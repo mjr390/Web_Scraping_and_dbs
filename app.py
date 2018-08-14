@@ -17,6 +17,7 @@ def testing():
         "facts":scraped_info['facts'],
         "hemisphere_image_urls":scraped_info["hemisphere_image_urls"]
     }
+    print(use["hemisphere_image_urls"][0])
     
 
 
