@@ -48,25 +48,29 @@ def scrape():
 
     # In[4]:
 
-
+    import time
     browser.click_link_by_partial_text('FULL IMAGE')
+    time.sleep(30)
 
 
     # In[5]:
 
 
     html = browser.html
-    soup2 = BeautifulSoup(html, 'html.parser')
-    img_line = soup2.find('div', class_='fancybox-inner fancybox-skin fancybox-dark-skin fancybox-dark-skin-open')
+    soup2 = BeautifulSoup(html, 'lxml')
+    img_line = soup2.find('img', class_='fancybox-image')
+    print("_"*100)
+    print(img_line)
+    print("_"*100)
 
 
     # In[6]:
 
 ###################333
-    # end_img_url = img_line.img['src']
-    # start_img_url = 'https://www.jpl.nasa.gov'
-    # featured_image_url = start_img_url + end_img_url
-    # featured_image_url
+    end_img_url = img_line['src']
+    start_img_url = 'https://www.jpl.nasa.gov'
+    featured_image_url = start_img_url + end_img_url
+    featured_image_url
 
 
     # # Mars Weather
@@ -139,7 +143,7 @@ def scrape():
     com_dict = {
         "news_title":news_title,
         "news_p":news_p,
-        #"featured_image_url":featured_image_url,
+        "featured_image_url":featured_image_url,
         "mars_weather":mars_weather,
         "facts":df_H,
         "hemisphere_image_urls":hemisphere_image_urls

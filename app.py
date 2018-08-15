@@ -12,12 +12,12 @@ def testing():
     use = {
         "news_title":scraped_info["news_title"],
         "news_p":scraped_info["news_p"],
-        #"featured_image_url":featured_image_url,
+        "featured_image_url":scraped_info["featured_image_url"],
         "mars_weather":scraped_info["mars_weather"],
         "facts":scraped_info['facts'],
         "hemisphere_image_urls":scraped_info["hemisphere_image_urls"]
     }
-    print(use["hemisphere_image_urls"][0])
+    ###print(use["hemisphere_image_urls"][0])
     
 
 
