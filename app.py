@@ -1,14 +1,17 @@
+# import dependencies
 from flask import Flask, render_template, redirect
 import pymongo
 import scrape_mars
 
+# init the Flask
 app = Flask(__name__)
 
+# create a route for scraping
 @app.route("/scrape")
 def testing():
-    # y = x + 1
-    # return y
+    # call the scrape_mars.py
     scraped_info = scrape_mars.scrape()
+    # create a dictionary of the scraped info from it
     use = {
         "news_title":scraped_info["news_title"],
         "news_p":scraped_info["news_p"],
@@ -17,7 +20,7 @@ def testing():
         "facts":scraped_info['facts'],
         "hemisphere_image_urls":scraped_info["hemisphere_image_urls"]
     }
-    ###print(use["hemisphere_image_urls"][0])
+    
     
 
 
@@ -40,6 +43,7 @@ def testing():
     # Redirect back to home page
     return redirect("/", code=302)
 
+# create a index route
 @app.route('/')
 def index():
     # Create connection variable
