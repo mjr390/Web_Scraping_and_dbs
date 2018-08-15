@@ -123,12 +123,84 @@ def scrape():
 
     # # Mars Hemispheres
 
+    # connect to the chromedriver
+    executable_path = {'executable_path': 'chromedriver.exe'}
+    # use Browser to work on the chrome browser
+    browser = Browser('chrome', **executable_path, headless=False)
+    # create a variable for the url containing the hemisohere image links
+    h_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    # have browser visit that url
+    browser.visit(h_url)
+    # have browser click the 'Cerberus Hemisphere Enhanced' button on the page to get to the Cerberus Hemisphere page
+    browser.click_link_by_partial_text('Cerberus Hemisphere Enhanced')
+    # use sleep to pause the code for 10 seconds to make sure that the full page loads
+    time.sleep(10)
 
-    Cerberus_Hemisphere = {"title":"Cerberus Hemisphere", "img_url":"https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg"}
-    Schiaparelli_Hemisphere = {"title":"Schiaparelli Hemisphere", "img_url":"https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"}
-    Syrtis_Major_Hemisphere = {"title":"Syrtis Major Hemisphere", "img_url":"https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"}
-    Valles_Marineris_Hemisphere = {"title":"Valles Marineris Hemisphere", "img_url":"https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"}
+    # create a variable of the html of the page
+    html = browser.html
+    # convert the variable to a Soup object
+    soup3 = BeautifulSoup(html, 'html.parser')
 
+    # get the link that is needed to reach the image
+    c_img = soup3.find('a', target='_blank')['href']
+    print(c_img)
+
+    # have browser visit the hemisphere image links url
+    browser.visit(h_url)
+    # have browser click the 'Schiaparelli Hemisphere Enhanced' button on the page to the Schiaparelli page
+    browser.click_link_by_partial_text('Schiaparelli Hemisphere Enhanced')
+    # use sleep to pause the code for 10 seconds to make sure that the full page loads
+    time.sleep(10)
+
+    # create a variable of the html of the page
+    html = browser.html
+    # convert the variable to a Soup object
+    soup3 = BeautifulSoup(html, 'html.parser')
+
+    # get the link that is needed to reach the image
+    sch_hem_img = soup3.find('a', target='_blank')['href']
+    print(sch_hem_img)
+
+    # have browser visit the hemisphere image links url
+    browser.visit(h_url)
+    # have browser click the 'Syrtis Major Hemisphere Enhanced' button on the page to get to the Syrtis Major page
+    browser.click_link_by_partial_text('Syrtis Major Hemisphere Enhanced')
+    # use sleep to pause the code for 10 seconds to make sure that the full page loads
+
+    time.sleep(10)
+    # create a variable of the html of the page
+    html = browser.html
+    # convert the variable to a Soup object
+    soup3 = BeautifulSoup(html, 'html.parser')
+
+    # get the part of the link that is needed to reach the image
+    syr_hem_img = soup3.find('a', target='_blank')['href']
+    print(syr_hem_img)
+
+    # have browser visit the hemisphere image links url
+    browser.visit(h_url)
+    # have browser click the 'Valles Marineris Hemisphere Enhanced' button on the page to get to the Valles Marineris page
+    browser.click_link_by_partial_text('Valles Marineris Hemisphere Enhanced')
+    # use sleep to pause the code for 10 seconds to make sure that the full page loads
+
+    time.sleep(10)
+    # create a variable of the html of the page
+    html = browser.html
+    # convert the variable to a Soup object
+    soup3 = BeautifulSoup(html, 'html.parser')
+
+    # get the part of the link that is needed to reach the image
+    val_hem_img = soup3.find('a', target='_blank')['href']
+    print(val_hem_img)
+
+
+    # create a dictionary for each hemisphere containing it's name and img link
+    Cerberus_Hemisphere = {"title":"Cerberus Hemisphere", "img_url":c_img}
+    Schiaparelli_Hemisphere = {"title":"Schiaparelli Hemisphere","img_url": sch_hem_img}
+    Syrtis_Major_Hemisphere = {"title":"Syrtis Major Hemisphere", "img_url":syr_hem_img}
+    Valles_Marineris_Hemisphere = {"title":"Valles Marineris Hemisphere", "img_url":val_hem_img}
+
+    # append all of the dicts to a list
     hemisphere_image_urls = []
     hemisphere_image_urls.append(Cerberus_Hemisphere)
     hemisphere_image_urls.append(Schiaparelli_Hemisphere)
