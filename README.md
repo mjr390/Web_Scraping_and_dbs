@@ -1,16 +1,30 @@
+The goal of this project was to gather different images and data about Mars by web scraping and to display this information onto a webpage.  The app.py file contains the flask routes, and the scrape_mars.py contains to code for the scraping. There is a .ipynb file that also contains code for scraping that does not have to be run in it's entirety.  The project makes use of MongoDB to store and retrieve the scraped information.  This README also contains the code used for scraping and a summary of the processes used when the code is run.
 
+What app.py does:
+
+- After running the code a webpage with a "Scrape New Data" button will be reachable in a production environment, from the "/" route
+
+- Clicking the button will direct to the "/scrape" route which runs the scrape function from scrape_mars.py and returns a dictionary of the scraped info
+
+- This dictionary is then sent to MongoDB and the code redirects back to the "/" route
+
+-  The program again connects to MongoDB, this time to retrieve the information, and then renders the index.html, now with information from MongoDB
+
+What the scrape() function does:
+
+- 
 
 ```python
 # Dependencies
 from bs4 import BeautifulSoup
 import requests
 from splinter import Browser
-```
+
 
 # NASA Mars News
 
 
-```python
+
 def scrape():
     # create a variable with the link to the page with the wanted info
     url = "https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest"
