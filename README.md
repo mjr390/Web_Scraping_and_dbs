@@ -10,7 +10,7 @@ What app.py does:
 
 -  The program again connects to MongoDB, this time to retrieve the information, and then renders the index.html, now with information from MongoDB
 
-What the scrape() function does:
+The scrape() function:
 
 - 
 
