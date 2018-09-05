@@ -12,7 +12,6 @@ What app.py does:
 
 The scrape() function:
 
-- 
 
 ```python
 # Dependencies
